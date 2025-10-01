@@ -1,4 +1,26 @@
+import { useState } from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+
+const types = [
+  {
+    id:'focus',
+    time:25,
+    image:require("./images/focus.png"),
+    display:'Foco'
+  },
+  {
+    id:'short',
+    time:5,
+    image:require("./images/short.png"),
+    display:'Pausa curta'
+  },
+  {
+    id:'long',
+    time:25,
+    image:require("./images/long.png"),
+    display:'Pausa longa'
+  }
+]
 
 const styles = StyleSheet.create({
     container:{
@@ -48,13 +70,39 @@ const styles = StyleSheet.create({
     }
 });
 
+const stylesDivFokus = StyleSheet.create({
+  container:{
+    flexDirection:"row",
+    width:"80%",
+    justifyContent:"center"
+  },
+  text:{
+    color:"#FFF",
+    padding:8,
+    fontSize:14
+    
+  },
+  pressable:{
+    backgroundColor:"#144480",
+    borderRadius:8,
+  }
+});
+
+function timeValue(time:number){
+  const date = new Date(time*1000);
+  return date.toLocaleTimeString("pt-BR",{ minute:"2-digit",second:"2-digit" })
+}
+
 export default function Index() {
+
+  const [typeTimer,setTypeTimer] = useState(types[0]);
+
   return (
     <View
       style={styles.container}
     >
       <Image
-        source={require("./images/focus.png")}
+        source={typeTimer.image}
       >
       </Image>
 
@@ -62,10 +110,24 @@ export default function Index() {
         style={styles.actions}
       >
 
+        <View style={stylesDivFokus.container}>
+          {types.map((t)=> (
+            <Pressable
+              key={t.id}
+              style={typeTimer.id === t.id ? stylesDivFokus.pressable : null}
+              onPress={()=> setTypeTimer(t)}
+            >
+              <Text style={stylesDivFokus.text}>
+                {t.display}
+              </Text>
+            </Pressable>
+          ))}
+        </View>
+
         <Text
           style={styles.timer}
         >
-          25:00
+          {timeValue(typeTimer.time)}
         </Text>
 
         <Pressable
