@@ -1,4 +1,4 @@
-# React Native Timer 👋
+# React Native Timer 
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app) to start react native studies.
 
