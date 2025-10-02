@@ -17,15 +17,21 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function FokusButton() {
+interface FokusButtonProps {
+    children: React.ReactNode
+    onPress?: () => void,
+}
+
+export default function FokusButton({ onPress, children }: FokusButtonProps) {
     return (
         <Pressable
+            onPress={onPress}
             style={styles.pressable}
         >
             <Text
                 style={styles.pressable_text}
             >
-                Começar
+                {children}
             </Text>
         </Pressable>
     );

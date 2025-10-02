@@ -1,25 +1,25 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import FokusButton from "./components/FokusButton";
 import ActionButton from "./components/ActionButton";
+import FokusButton from "./components/FokusButton";
 import Timer from "./components/Timer";
 
 const types = [
   {
     id: 'focus',
-    time: 25,
+    time: 25 * 60,
     image: require("./images/focus.png"),
     display: 'Foco'
   },
   {
     id: 'short',
-    time: 5,
+    time: 5 * 60,
     image: require("./images/short.png"),
     display: 'Pausa curta'
   },
   {
     id: 'long',
-    time: 25,
+    time: 25 * 60,
     image: require("./images/long.png"),
     display: 'Pausa longa'
   }
@@ -63,6 +63,48 @@ export default function Index() {
 
   const [typeTimer, setTypeTimer] = useState(types[0]);
 
+  const [titleButtonTimer, setTitleButtonTimer] = useState("Começar");
+
+  const [seconds, setSeconds] = useState(typeTimer.time);
+
+  const refToggle = useRef<number | null>(null);
+
+  const toogleTypeTimer = (typeTimer: any) => {
+    setTypeTimer(typeTimer);
+    setSeconds(typeTimer.time);
+    clear();
+  }
+
+  const clear = () => {
+    if (refToggle.current != null) {
+      clearInterval(refToggle.current);
+      refToggle.current = null;
+      setTitleButtonTimer("Começar")
+    }
+  }
+
+  const toggleButtonFokus = () => {
+    if (refToggle.current) {
+      clear();
+      setTitleButtonTimer("Começar");
+      return;
+    }
+
+    setTitleButtonTimer("Pausar");
+
+    const id = setInterval(() => {
+      setSeconds(oldState => {
+        if (oldState === 0) {
+          clear();
+          return typeTimer.time;
+        }
+        return oldState - 1;
+      });
+    }, 1000)
+
+    refToggle.current = id;
+  }
+
   return (
     <View
       style={styles.container}
@@ -81,7 +123,7 @@ export default function Index() {
             <ActionButton
               key={t.id}
               isActive={t.id === typeTimer.id}
-              onPress={() => setTypeTimer(t)}
+              onPress={() => toogleTypeTimer(t)}
             >
               {t.display}
             </ActionButton>
@@ -89,19 +131,23 @@ export default function Index() {
         </View>
 
         <Timer
-          totalSeconds={typeTimer.time}
+          totalSeconds={seconds}
         />
 
-        <FokusButton />
+        <FokusButton
+          onPress={toggleButtonFokus}
+        >
+          {titleButtonTimer}
+        </FokusButton>
 
       </View>
 
       <View>
         <Text style={styles.footer_text}>
-          Projeto fictício e sem fins comerciais.
+          Projeto feito para estudos
         </Text>
         <Text style={styles.footer_text}>
-          Desenvolvido por Alura.
+          Desenvolvido por Rodrigo
         </Text>
       </View>
 
