@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import ActionButton from "./components/ActionButton";
 import FokusButton from "./components/FokusButton";
+import { IconPause, IconStart } from "./components/Icons";
 import Timer from "./components/Timer";
 
 const types = [
@@ -136,6 +137,7 @@ export default function Index() {
 
         <FokusButton
           onPress={toggleButtonFokus}
+          icon={titleButtonTimer === "Começar" ? <IconStart></IconStart> : <IconPause></IconPause>}
         >
           {titleButtonTimer}
         </FokusButton>

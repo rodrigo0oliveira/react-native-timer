@@ -20,9 +20,10 @@ const styles = StyleSheet.create({
 interface FokusButtonProps {
     children: React.ReactNode
     onPress?: () => void,
+    icon: React.ReactElement
 }
 
-export default function FokusButton({ onPress, children }: FokusButtonProps) {
+export default function FokusButton({ onPress, children, icon }: FokusButtonProps) {
     return (
         <Pressable
             onPress={onPress}
@@ -31,7 +32,7 @@ export default function FokusButton({ onPress, children }: FokusButtonProps) {
             <Text
                 style={styles.pressable_text}
             >
-                {children}
+                {icon}  {children}
             </Text>
         </Pressable>
     );
