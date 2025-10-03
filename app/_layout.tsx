@@ -11,6 +11,9 @@ export default function Layout() {
                 headerTitleStyle: {
                     fontWeight: 'bold'
                 },
+                contentStyle: {
+                    backgroundColor: "#021123"
+                }
             }
             }>
         </ Stack >

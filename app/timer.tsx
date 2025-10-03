@@ -1,9 +1,10 @@
 import { Stack } from "expo-router";
 import { useRef, useState } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import ActionButton from "./components/ActionButton";
 import FokusButton from "./components/FokusButton";
-import { IconPause, IconStart } from "./components/Icons";
+import Footer from "./components/Footer";
+import { IconPause, IconStart } from "./components/Icons/icon";
 import Timer from "./components/Timer";
 
 const types = [
@@ -51,13 +52,6 @@ const styles = StyleSheet.create({
     borderColor: "#144480",
     gap: 32,
     padding: 24
-  },
-  footer: {
-    width: "80%"
-  },
-  footer_text: {
-    color: "#98A0A8",
-    textAlign: "center"
   }
 });
 
@@ -150,16 +144,9 @@ export default function TimeScreen() {
         </FokusButton>
 
       </View>
+      <Footer>
 
-      <View>
-        <Text style={styles.footer_text}>
-          Projeto feito para estudos
-        </Text>
-        <Text style={styles.footer_text}>
-          Desenvolvido por Rodrigo
-        </Text>
-      </View>
-
+      </Footer>
     </View >
   );
 }
