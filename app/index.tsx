@@ -1,16 +1,14 @@
-import { Link, Stack } from "expo-router";
+import { Link } from "expo-router";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import Footer from "./components/Footer";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Footer from "../components/Footer";
 
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    justifyContent: "center",
-    marginTop: 40
-  },
-  imgLogo: {
-    marginTop: 40,
-    marginBottom: 40
+    justifyContent: "space-around",
+    backgroundColor: "#021123",
+    flex: 1
   },
   containerTextHome: {
     paddingLeft: 16,
@@ -47,15 +45,9 @@ const styles = StyleSheet.create({
 
 export default function Index() {
   return (
-    <View style={styles.container}>
-      <Stack.Screen
-        options={{
-          headerShown: false
-        }}
-      />
+    <SafeAreaView style={styles.container}>
       <Image
         source={require("./images/fokus-logo.png")}
-        style={styles.imgLogo}
       >
       </Image>
 
@@ -80,6 +72,6 @@ export default function Index() {
       <Footer>
 
       </Footer>
-    </View>
+    </SafeAreaView>
   )
 }

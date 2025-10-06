@@ -1,21 +1,42 @@
-import { Stack } from 'expo-router';
+import { Drawer } from 'expo-router/drawer';
 
 export default function Layout() {
     return (
-        <Stack
+        <Drawer
             screenOptions={{
                 headerStyle: {
                     backgroundColor: '#021123',
                 },
                 headerTintColor: '#fff',
-                headerTitleStyle: {
-                    fontWeight: 'bold'
+                drawerLabelStyle: {
+                    color: "#FFF"
                 },
-                contentStyle: {
-                    backgroundColor: "#021123"
-                }
+                drawerContentStyle: {
+                    backgroundColor: '#021123',
+                },
             }
             }>
-        </ Stack >
+
+            <Drawer.Screen
+                name='index'
+                options={{
+                    drawerLabel: "Home",
+                    title: "",
+                    drawerItemStyle: {
+                        display: "none"
+                    },
+                    headerShown: false
+                }}
+            />
+
+            <Drawer.Screen
+                name='timer'
+                options={{
+                    drawerLabel: "Timer",
+                    title: ""
+                }}
+            />
+
+        </ Drawer >
     );
 }

@@ -1,11 +1,11 @@
-import { Stack } from "expo-router";
 import { useRef, useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
-import ActionButton from "./components/ActionButton";
-import FokusButton from "./components/FokusButton";
-import Footer from "./components/Footer";
-import { IconPause, IconStart } from "./components/Icons/icon";
-import Timer from "./components/Timer";
+import { SafeAreaView } from "react-native-safe-area-context";
+import ActionButton from "../components/ActionButton";
+import FokusButton from "../components/FokusButton";
+import Footer from "../components/Footer";
+import { IconPause, IconStart } from "../components/Icons/icon";
+import Timer from "../components/Timer";
 
 const types = [
   {
@@ -102,14 +102,9 @@ export default function TimeScreen() {
   }
 
   return (
-    <View
+    <SafeAreaView
       style={styles.container}
     >
-      <Stack.Screen
-        options={{
-          title: "",
-        }}
-      />
 
       <Image
         source={typeTimer.image}
@@ -147,7 +142,7 @@ export default function TimeScreen() {
       <Footer>
 
       </Footer>
-    </View >
+    </SafeAreaView >
   );
 }
 
