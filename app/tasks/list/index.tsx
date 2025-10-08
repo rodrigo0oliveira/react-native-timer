@@ -45,7 +45,10 @@ export default function Index() {
                             children={item.description}
                             done={item.complete}
                             onDelete={() => deleteTask(item.id)}
-                            onEdit={() => { }}
+                            onEdit={() => router.navigate({
+                                pathname: '/tasks/edit/[id]',
+                                params: { id: item.id }
+                            })}
                             onToogleComplete={() => toogleTaskComplete(item.id)}
 
                         />}

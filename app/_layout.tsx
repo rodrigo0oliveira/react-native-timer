@@ -62,6 +62,20 @@ export default function Layout() {
                     }}
                 />
 
+                <Drawer.Screen
+                    name='tasks/edit/[id]'
+                    options={{
+                        title: "",
+                        drawerItemStyle: {
+                            display: "none"
+                        },
+                        headerLeft: () => {
+                            return <Ionicons onPress={() => router.replace("/tasks/list")} name='arrow-back' size={22} style={{ marginLeft: 14 }} color={"#FFF"}></Ionicons>
+                        }
+                    }}
+                />
+
+
             </ Drawer >
         </TaskProvider>
 
