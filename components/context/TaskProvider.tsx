@@ -32,7 +32,6 @@ export function TaskProvider({ children }: TaskProviderProps) {
     useEffect(() => {
         const getData = async () => {
             try {
-                console.log("pegar data")
                 const jsonValue = await AsyncStorage.getItem(TASK_STORAGE_KEY);
                 const data = jsonValue != null ? JSON.parse(jsonValue) : [];
                 setTasks(data);

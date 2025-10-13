@@ -28,10 +28,18 @@ const styles = StyleSheet.create({
 export default function Index() {
     const { tasks, deleteTask, toogleTaskComplete } = useTaskContext();
 
+
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.containerWrapper}>
                 <FlatList
+                    ListEmptyComponent={() => <SafeAreaView style={styles.container}>
+                        <View style={styles.containerWrapper}>
+                            <Text style={{ color: "#FFF" }}>Ainda não há tarefas cadatradas!</Text>
+                        </View>
+
+                    </SafeAreaView>}
                     ItemSeparatorComponent={() => <View style={{ height: 10 }}></View>}
                     data={tasks}
                     ListHeaderComponent={
